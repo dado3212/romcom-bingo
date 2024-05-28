@@ -61,21 +61,8 @@ ini_set('display_errors', 'On');
         <?php
         function rs( $length = 8 ) { $chars = "abcdefghijklmnopqrstuvwxyz0123456789"; $rs = substr( str_shuffle( $chars ), 0, $length ); return $rs; } 
         ?>
-        <link rel="stylesheet" type="text/css" href="css/main.css?id=<?php echo rs(); ?>">
-
-        <script>
-            window.onload = () => {
-                const elements = document.querySelectorAll('.option');
-
-                // Add a click event listener to each element
-                elements.forEach(function(element) {
-                    element.addEventListener('click', function() {
-                        // This function is called whenever an element with 'your-class-name' is clicked
-                        this.classList.toggle('selected');
-                    });
-                });
-            };
-        </script>
+        <link rel="stylesheet" type="text/css" href="assets/main.css?id=<?php echo rs(); ?>">
+        <script src="assets/main.js"></script>
     </head>
     <body>
         <h1>Rom-com Bingo!</h1>
