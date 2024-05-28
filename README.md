@@ -2,6 +2,10 @@
 
 ## Setup
 
+https://alexbeals.com/projects/bingo/?b=1&r=3
+
+https://alexbeals.com/projects/bingo/?b=1&r=whatever
+
 Create a file called `secret.php` in the `php` folder. It should have a function `getDatabase();` like this:
 
 ```lang=php

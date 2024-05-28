@@ -2,6 +2,18 @@ var current = 0;
 var dimension = 5;
 
 const FREE_SPACE = 12;
+const COLORS = {
+    'red': '#AC1212',
+    'orange': '#F37310',
+    'yellow': '#EBC621',
+    'green': '#4E9A26',
+    'blue': '#1A5AB6',
+    'teal': '#329A97',
+    'purple': '#722B92',
+    'pink': '#EA64A3',
+};
+
+let selectedColor;
 
 // An array of { text: 'stuff', tagIndex: 2 }
 var selectedTags = [];
@@ -11,14 +23,19 @@ function getCell(num) {
 }
 
 function resetCells() {
-    // Clear all of the text of the existing cells
     var cells = document.querySelectorAll('.bingo .cell');
     for (let i = 0; i < cells.length; i++) {
+        // Clear all of the text of the existing cells
         if (i !== FREE_SPACE) {
             let p = cells[i].querySelector('p');
             if (p) {
                 p.remove();
             }
+        }
+        // Modify the 'selected' color
+        let selectedBackground = cells[i].querySelector('.selected-background');
+        if (selectedBackground) {
+            selectedBackground.style.background = selectedColor;
         }
     }
 
@@ -33,7 +50,7 @@ function resetCells() {
             } else {
                 cell = getCell(i);
             }
-            cell.innerHTML = '<p>' + tag['text'] + '</p>';
+            cell.innerHTML += '<p>' + tag['text'] + '</p>';
             cell.setAttribute('selected', 'false');
             cell.setAttribute('index', tag['tagIndex'].toString());
         }
@@ -46,6 +63,36 @@ window.onload = () => {
     if (startingTags) {
         selectedTags = startingTags;
         resetCells();
+
+        // Set up the color selector
+        let hasChosen = false;
+        const colorHolder = document.querySelector('.colors');
+        for (let [colorName, color] of Object.entries(COLORS)) {
+            let newColor = document.createElement('div');
+            newColor.style.backgroundColor = color;
+            newColor.setAttribute('name', colorName);
+            // Select the first color
+            if (!hasChosen) {
+                hasChosen = true;
+                newColor.classList.add('selected');
+                selectedColor = color;
+            }
+
+            newColor.addEventListener('click', function () {
+                // Remove 'selected' from all other colors
+                colorHolder.querySelectorAll('div').forEach(function (colorCell) {
+                    colorCell.classList.remove('selected');
+                });
+                // Add it to this one
+                this.classList.add('selected');
+                // Actually set it as the color
+                selectedColor = color;
+                // Call resetCells to make the cells use the new color
+                resetCells();
+            });
+
+            colorHolder.appendChild(newColor);
+        }
     }
 
     // Add a click event listener to each tag option
@@ -120,6 +167,7 @@ window.onload = () => {
             } else {
                 let div = document.createElement('div');
                 div.className = 'selected-background';
+                div.style.background = selectedColor;
                 element.appendChild(div);
             }
             isSelected = !isSelected;

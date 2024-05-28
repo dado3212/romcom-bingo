@@ -127,6 +127,11 @@
         <?php if ($bingo === 0) {  ?>
             <button class="create">Create Bingo</button>
         <?php } ?>
+
+        <?php if ($bingo !== 0) {  ?>
+            <div class="colors">
+            </div>
+        <?php } ?>
         
         <div class="selector">
         <?php
