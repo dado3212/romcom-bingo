@@ -39,6 +39,14 @@
                     $tag_info[$tag['index']] = $tag['text'];
                 }
 
+                // Do a seeded randomization of the squares
+                $randomization_seed = intval($_GET["r"] ?? "");
+                if ($randomization_seed !== 0) {
+                    mt_srand($randomization_seed);
+                }
+                $order = array_map(function ($val) { return mt_rand(); }, range(1, count($bingo_tags)));
+                array_multisort($order, $bingo_tags);
+
                 $json_data = [];
                 foreach ($bingo_tags as $tag) {
                     $json_data[] = [
