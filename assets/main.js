@@ -1,12 +1,43 @@
 var current = 0;
-var size = 5;
+var dimension = 5;
+
+const FREE_SQUARE = 12;
+
+// An array of { text: 'stuff', tagIndex: 2 }
+var selectedTags = [];
 
 function getCell(num) {
     return document.querySelectorAll('.cell')[num];
 }
 
-function resetCells(dedicated) {
-    
+function resetCells() {
+    // Clear all of the text of the existing cells
+    var cells = document.querySelectorAll('.bingo .cell');
+    for (let i = 0; i < cells.length; i++) {
+        if (i !== FREE_SQUARE) {
+            let p = cells[i].querySelector('p');
+            if (p) {
+                p.remove();
+            }
+        }
+    }
+
+    // Iterate over the selected tags
+    let tag;
+    for (let i = 0; i < selectedTags.length; i++) {
+        // Skip over Free Space
+        if (i === FREE_SQUARE) {
+            i += 1;
+        }
+
+        tag = selectedTags[i] ?? null;
+        if (tag) {
+            getCell(i).innerHTML = '<p>' + tag['text'] + '</p>';
+            getCell(i).setAttribute('selected', 'false');
+            getCell(i).setAttribute('index', tag['tagIndex'].toString());
+            current = i;
+        }
+    }
 }
 
 window.onload = () => {
@@ -31,6 +62,12 @@ window.onload = () => {
 
             getCell(current).innerHTML = '<p>' + this.innerHTML + '</p>';
             getCell(current).setAttribute('selected', 'false');
+
+            selectedTags.push({
+                text: this.innerHTML,
+                tagIndex: parseInt(this.getAttribute('index')),
+            });
+
             current += 1;
             // Skip over Free Space
             if (current === 12) {
@@ -38,6 +75,10 @@ window.onload = () => {
             }
         });
     });
+
+    // TODO: Remove this temp code
+    document.querySelector('.reset').addEventListener('click', resetCells);
+
     // TODO: At the max, gray out all unselected squares
     // TODO: Handle unselecting
 

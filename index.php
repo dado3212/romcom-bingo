@@ -3,9 +3,6 @@
     <head>
         <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
-
 			// Respects 'Request Desktop Site'
 			if (preg_match("/(iPhone|iPod|iPad|Android|BlackBerry)/i", $_SERVER["HTTP_USER_AGENT"])) {
 				?><meta name="viewport" content="width=device-width, initial-scale=1.0"><?php
@@ -15,45 +12,14 @@ ini_set('display_errors', 'On');
 
             // Get all of the tags that we want to use
             $PDO = getDatabase();
-            // Index 1 is 'Free Space'
-            $tags_stmt = $PDO->prepare("SELECT `index`, `text` FROM tags WHERE `index` != 1;");
+            $tags_stmt = $PDO->prepare("SELECT `index`, `text` FROM tags WHERE `index` != 1");
             $tags_stmt->execute();
 
             $tags = $tags_stmt->fetchAll();
 
+            error_reporting(E_ALL);
+            ini_set('display_errors', 'On');
             // print_r(var_export($tags, true));
-
-            // if ($stmt->rowCount() == 1) {
-            //     $color = $stmt->fetch()["color"];
-
-            //     // Increment count of times viewed by one
-            //     $stmt = $PDO->prepare("UPDATE associations SET count = count + 1 WHERE query=:query");
-            //     $stmt->bindValue(":query", $query, PDO::PARAM_STR);
-            //     $stmt->execute();
-            // } else {
-            //     // Query is new, generate it
-            //     $color = getColorFromImages(getImagesFromWord($query));
-
-            //     // Check to make sure that someone didn't JUST add it
-            //     $stmt = $PDO->prepare("SELECT * FROM associations WHERE query=:query");
-            //     $stmt->bindValue(":query", $query, PDO::PARAM_STR);
-            //     $stmt->execute();
-
-            //     if ($stmt->rowCount() == 0) {
-            //         // Add it to the database
-            //         $add = $PDO->prepare("INSERT INTO associations (query, color) VALUES (:query, :color)");
-            //         $add->bindValue(":query", $query, PDO::PARAM_STR);
-            //         $add->bindValue(":color", $color, PDO::PARAM_STR);
-            //         $add->execute();
-            //     } else {
-            //         $color = $stmt->fetch()["color"];
-
-            //         // Increment count of times viewed by one
-            //         $stmt = $PDO->prepare("UPDATE associations SET count = count + 1 WHERE query=:query");
-            //         $stmt->bindValue(":query", $query, PDO::PARAM_STR);
-            //         $stmt->execute();
-            //     }
-            // }
         ?>
 
         <title>Rom-com Bingo</title>
@@ -86,7 +52,7 @@ ini_set('display_errors', 'On');
             <div class="row">
                 <div class="cell"></div>
                 <div class="cell"></div>
-                <div class="cell"><p>Free Space ★</p></div>
+                <div class="cell"><p>Free Space</p></div>
                 <div class="cell"></div>
                 <div class="cell"></div>
             </div>
@@ -105,6 +71,7 @@ ini_set('display_errors', 'On');
                 <div class="cell"></div>
             </div>
         </div>
+        <button class="reset">Reset</button>
         
         <div class="selector">
         <?php
