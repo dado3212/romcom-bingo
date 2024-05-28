@@ -1,5 +1,21 @@
 # Rom-Com Bingo
 
+## TODO
+1. Favicon and header and all that jazz.
+2. Make sure it renders properly and is interactible on mobile.
+3. Fix tag truncation.
+4. Allow you to create new bingos, and have a proper share screen.
+5. Visual cleanup so it looks professional.
+6. Allow you to insert your own tags.
+7. Saving of the movie name/naming bingos?
+8. Different grid sizes?
+9. Fun animations when you get bingo?
+10. ...with a counter of how many times you won?
+11. More visually interesting selection scribbling.
+12. See previous bingos/save your status (see who won?)
+13. Admin screen for deleting/adding new default tags/default tag status?
+14. Delete bingos?
+
 ## Setup
 
 https://alexbeals.com/projects/bingo/?b=1&r=3
