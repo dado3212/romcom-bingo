@@ -30,6 +30,7 @@ function resetCells() {
             i += 1;
         }
 
+        // If the tag is in the list, then insert it
         tag = selectedTags[i] ?? null;
         if (tag) {
             getCell(i).innerHTML = '<p>' + tag['text'] + '</p>';
@@ -40,27 +41,17 @@ function resetCells() {
 }
 
 window.onload = () => {
-
-    // Initialize the cell values
-    const cellValues = {};
-    for (let i = 0; i < 25; i++) {
-        cellValues[i] = null;
-        // Free Space
-        if (i === 13) {
-            cellValues[i] = 'Free Space ★';
-        }
-    }
-
-    const tagList = document.querySelectorAll('.option');
-
     // Add a click event listener to each tag option
-    tagList.forEach(function (tag) {
+    document.querySelectorAll('.option').forEach(function (tag) {
         tag.addEventListener('click', function () {
-            // This function is called whenever an element with 'your-class-name' is clicked
+            // Add in the class for CSS styling
             this.classList.toggle('selected');
             let isSelected = this.classList.contains('selected');
             let tagIndex = parseInt(this.dataset.index);
 
+            // Add it directly, and append it to the 'selectedTags' list
+            // which is used when unselecting an option, and when 
+            // creating a formal bingo board that can be shared
             if (isSelected) {
                 let cell = getCell(current);
 
@@ -78,6 +69,7 @@ window.onload = () => {
                     current += 1;
                 }
             } else {
+                // Find the selected tag that matches and remove it
                 let newSelectedTags = [];
                 for (let i = 0; i < selectedTags.length; i++) {
                     if (selectedTags[i].tagIndex != tagIndex) {
@@ -85,20 +77,24 @@ window.onload = () => {
                     }
                 }
                 selectedTags = newSelectedTags;
+
+                // Rewrite the cells (easier than trying to fix them
+                // for tags that are in the middle of the list)
                 resetCells();
                 current = selectedTags.length;
+                // Skip over Free Space
+                if (current === FREE_SPACE) {
+                    current += 1;
+                }
             }
         });
     });
 
-    // TODO: Remove this temp code
-    document.querySelector('.reset').addEventListener('click', resetCells);
-
     // TODO: At the max, gray out all unselected squares
 
+    // Handle selecting cells in a formal bingo board
     document.querySelectorAll('.cell').forEach(function (element) {
         element.addEventListener('click', function () {
-            // This function is called whenever an element with 'your-class-name' is clicked
             this.classList.toggle('fulfilled');
 
             let isSelected = element.getAttribute('selected') === 'true';

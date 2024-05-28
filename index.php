@@ -71,7 +71,6 @@
                 <div class="cell"></div>
             </div>
         </div>
-        <button class="reset">Reset</button>
         
         <div class="selector">
         <?php
