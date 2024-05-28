@@ -69,6 +69,7 @@
     z-index: 1;
 
     font-family: sans-serif;
+    user-select: none;
     /* This isn't ideal. Should probably split? */
     overflow-wrap: break-word;
 

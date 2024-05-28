@@ -41,6 +41,13 @@ function resetCells() {
 }
 
 window.onload = () => {
+    // If you're displaying an existing bingo board, then load it
+    // TODO: Split this into multiple JS files maybe?
+    if (startingTags) {
+        selectedTags = startingTags;
+        resetCells();
+    }
+
     // Add a click event listener to each tag option
     document.querySelectorAll('.option').forEach(function (tag) {
         tag.addEventListener('click', function () {
@@ -91,6 +98,16 @@ window.onload = () => {
     });
 
     // TODO: At the max, gray out all unselected squares
+    // TODO: At the max, enable this (and disable it at the start)
+    const createButton = document.querySelector('.create');
+    if (createButton) {
+        createButton.addEventListener('click', function () {
+            let savedTags = JSON.stringify(selectedTags.map((element) => element['tagIndex']));
+            
+            // TODO: Actually push this using create.php
+            console.log(savedTags);
+        });
+    }
 
     // Handle selecting cells in a formal bingo board
     document.querySelectorAll('.cell').forEach(function (element) {
