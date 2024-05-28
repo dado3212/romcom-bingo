@@ -23,19 +23,19 @@ function resetCells() {
     }
 
     // Iterate over the selected tags
-    let tag;
+    let tag, cell;
     for (let i = 0; i < selectedTags.length; i++) {
-        // Skip over Free Space
-        if (i === FREE_SPACE) {
-            i += 1;
-        }
-
         // If the tag is in the list, then insert it
         tag = selectedTags[i] ?? null;
         if (tag) {
-            getCell(i).innerHTML = '<p>' + tag['text'] + '</p>';
-            getCell(i).setAttribute('selected', 'false');
-            getCell(i).setAttribute('index', tag['tagIndex'].toString());
+            if (i >= FREE_SPACE) {
+                cell = getCell(i + 1);
+            } else {
+                cell = getCell(i);
+            }
+            cell.innerHTML = '<p>' + tag['text'] + '</p>';
+            cell.setAttribute('selected', 'false');
+            cell.setAttribute('index', tag['tagIndex'].toString());
         }
     }
 }
@@ -83,7 +83,7 @@ window.onload = () => {
                 resetCells();
                 current = selectedTags.length;
                 // Skip over Free Space
-                if (current === FREE_SPACE) {
+                if (current >= FREE_SPACE) {
                     current += 1;
                 }
             }
