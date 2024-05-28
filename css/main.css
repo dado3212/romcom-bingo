@@ -1,0 +1,15 @@
+.option {
+    display: inline-block;
+    background-color: #113916;
+    padding: 6px;
+    margin: 3px;
+    border-radius: 4px;
+    font-family: sans-serif;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+}
+
+.option.selected {
+    background-color: #4E9A26;
+}
