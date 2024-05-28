@@ -13,3 +13,64 @@
 .option.selected {
     background-color: #4E9A26;
 }
+
+.bingo {
+    display: inline-block;
+    background-color: black;
+    padding-bottom: 2px;
+}
+
+.row {
+    display: flex;
+    /**
+     *  The bottom pixel gap is covered by .bingo
+     *  The left pixel gap is covered by .cell 
+     */
+    margin: 2px 2px 0 0;
+}
+
+.cell {
+    /* Should ideally be some combination of vw and vh */
+    width: 75px;
+    height: 75px;
+    background-color: white;
+    overflow: hidden;
+    position: relative;
+
+    margin-left: 2px;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+
+    cursor: pointer;
+}
+
+.cell .selected-background {
+    z-index: 0;
+
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+    background: red; 
+    /* also works with an actual image, 
+     * not just with a CSS gradient *
+    url(https://images.unsplash.com/photo-1633596683562-4a47eb4983c5?w=1400) 
+        50%/ cover/**/
+    filter: url(#grainy);
+    opacity: 0.6;
+}
+
+.cell p {
+    z-index: 1;
+
+    font-family: sans-serif;
+    /* This isn't ideal. Should probably split? */
+    overflow-wrap: break-word;
+
+    padding: 3px;
+}
