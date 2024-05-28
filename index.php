@@ -2,10 +2,58 @@
 <html>
     <head>
         <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+
 			// Respects 'Request Desktop Site'
 			if (preg_match("/(iPhone|iPod|iPad|Android|BlackBerry)/i", $_SERVER["HTTP_USER_AGENT"])) {
 				?><meta name="viewport" content="width=device-width, initial-scale=1.0"><?php
 			}
+
+            include("php/secret.php");
+
+            // Get all of the tags that we want to use
+            $PDO = getDatabase();
+            // Index 1 is 'Free Space'
+            $tags_stmt = $PDO->prepare("SELECT `index`, `text` FROM tags WHERE `index` != 1;");
+            $tags_stmt->execute();
+
+            $tags = $tags_stmt->fetchAll();
+
+            // print_r(var_export($tags, true));
+
+            // if ($stmt->rowCount() == 1) {
+            //     $color = $stmt->fetch()["color"];
+
+            //     // Increment count of times viewed by one
+            //     $stmt = $PDO->prepare("UPDATE associations SET count = count + 1 WHERE query=:query");
+            //     $stmt->bindValue(":query", $query, PDO::PARAM_STR);
+            //     $stmt->execute();
+            // } else {
+            //     // Query is new, generate it
+            //     $color = getColorFromImages(getImagesFromWord($query));
+
+            //     // Check to make sure that someone didn't JUST add it
+            //     $stmt = $PDO->prepare("SELECT * FROM associations WHERE query=:query");
+            //     $stmt->bindValue(":query", $query, PDO::PARAM_STR);
+            //     $stmt->execute();
+
+            //     if ($stmt->rowCount() == 0) {
+            //         // Add it to the database
+            //         $add = $PDO->prepare("INSERT INTO associations (query, color) VALUES (:query, :color)");
+            //         $add->bindValue(":query", $query, PDO::PARAM_STR);
+            //         $add->bindValue(":color", $color, PDO::PARAM_STR);
+            //         $add->execute();
+            //     } else {
+            //         $color = $stmt->fetch()["color"];
+
+            //         // Increment count of times viewed by one
+            //         $stmt = $PDO->prepare("UPDATE associations SET count = count + 1 WHERE query=:query");
+            //         $stmt->bindValue(":query", $query, PDO::PARAM_STR);
+            //         $stmt->execute();
+            //     }
+            // }
         ?>
 
         <title>Rom-com Bingo</title>
@@ -37,50 +85,12 @@
 
         </div>
         
+        <div class="selector">
         <?php
-            $default = [
-                "Sharing food",
-                "In the back of a car",
-                "Reveal of emotion in very public place",
-                "Classically chivalrous move",
-                "Full breakfast that no one eats",
-                "Poorly filmed FaceTime call",
-                "Towel sequence",
-                "Family weighing in",
-                "Love triangle",
-                "Texts on screen",
-                "Cheating(?)",
-                "They have sex",
-                "Wake up flawless",
-                "Tears",
-                "This is an ad",
-                "\"I want to pause\"",
-                "It'll never work",
-                "Denial of feelings",
-                "Best friend gasp (deetz)",
-                "Easy miscommunication",
-                "Wisdom of teens",
-                "They say the title",
-                "Smack on the ass",
-                "Drone footage",
-                "Very obvious Chekov’s gun",
-                "Fun credits sequence (opening/closing)",
-                "Relationship broken up",
-                "Time-skip",
-                "Running through the airport",
-                "Clumsy moment",
-                "Almost kiss",
-                "Accent!",
-                "Travel montage",
-                "Best friend heart to heart",
-                "Matchmaker",
-                "Overworked",
-                "Double down",
-            ];
-
-            foreach ($default as $option) {
-                echo '<div class="option">' . $option . '</div>';
+            foreach ($tags as $tag) {
+                echo '<div class="option" data-index="' . $tag['index'] . '">' . $tag['text'] . '</div>';
             }
         ?>
+        </div>
     </body>
 </html>
