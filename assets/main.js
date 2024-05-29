@@ -60,7 +60,7 @@ function resetCells() {
 window.onload = () => {
     // If you're displaying an existing bingo board, then load it
     // TODO: Split this into multiple JS files maybe?
-    if (startingTags) {
+    if (typeof startingTags !== 'undefined') {
         selectedTags = startingTags;
         resetCells();
 
