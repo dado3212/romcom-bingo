@@ -1,6 +1,8 @@
 # Rom-Com Bingo
 
 ## TODO
+
+**Important**
 1. Favicon and header and all that jazz.
 2. Make sure it renders properly and is interactible on mobile.
 3. Fix tag truncation.
@@ -8,17 +10,18 @@
 5. Visual cleanup so it looks professional.
 6. Allow you to insert your own tags.
 7. Saving of the movie name/naming bingos?
-8. Different grid sizes?
 9. Fun animations when you get bingo?
-10. ...with a counter of how many times you won?
 11. More visually interesting selection scribbling.
+15. Bind the click events to touchstart to remove selection lag on iOS.
+17. Right padding and center bingo board.
+18. Tag selection overlap?
+
+**Unimportant**
+8. Different grid sizes?
+10. ...with a counter of how many times you won?
 12. See previous bingos/save your status (see who won?)
 13. Admin screen for deleting/adding new default tags/default tag status?
 14. Delete bingos?
-15. Bind the click events to touchstart to remove selection lag on iOS.
-16. Fix bug where selecting, changing colors, and then tapping again applies it twice (just use child count instead of the tag).
-17. Right padding and center bingo board.
-18. Tag selection overlap?
 
 ## Setup
 

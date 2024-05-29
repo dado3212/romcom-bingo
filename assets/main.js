@@ -51,7 +51,6 @@ function resetCells() {
                 cell = getCell(i);
             }
             cell.innerHTML += '<p>' + tag['text'] + '</p>';
-            cell.setAttribute('selected', 'false');
             cell.setAttribute('index', tag['tagIndex'].toString());
         }
     }
@@ -110,7 +109,6 @@ window.onload = () => {
                 let cell = getCell(current);
 
                 cell.innerHTML = '<p>' + this.innerHTML + '</p>';
-                cell.setAttribute('selected', 'false');
 
                 selectedTags.push({
                     text: this.innerHTML,
@@ -161,18 +159,15 @@ window.onload = () => {
         element.addEventListener('click', function () {
             this.classList.toggle('fulfilled');
 
-            let isSelected = element.getAttribute('selected') === 'true';
-            if (isSelected) {
-                element.querySelector('.selected-background').remove();
+            let selectedBackground = element.querySelector('.selected-background');
+            if (selectedBackground) {
+                selectedBackground.remove();
             } else {
                 let div = document.createElement('div');
                 div.className = 'selected-background';
                 div.style.background = selectedColor;
                 element.appendChild(div);
             }
-            isSelected = !isSelected;
-
-            element.setAttribute('selected', isSelected ? 'true' : 'false');
         });
     });
 };
