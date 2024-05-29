@@ -15,6 +15,7 @@
 12. See previous bingos/save your status (see who won?)
 13. Admin screen for deleting/adding new default tags/default tag status?
 14. Delete bingos?
+15. Bind the click events to touchstart to remove selection lag on iOS.
 
 ## Setup
 
