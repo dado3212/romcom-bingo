@@ -16,6 +16,9 @@
 13. Admin screen for deleting/adding new default tags/default tag status?
 14. Delete bingos?
 15. Bind the click events to touchstart to remove selection lag on iOS.
+16. Fix bug where selecting, changing colors, and then tapping again applies it twice (just use child count instead of the tag).
+17. Right padding and center bingo board.
+18. Tag selection overlap?
 
 ## Setup
 
