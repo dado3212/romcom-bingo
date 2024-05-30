@@ -133,7 +133,7 @@
         </div>
 
         <?php if ($bingo === 0) {  ?>
-            <button class="create">Create Bingo</button>
+            <button class="create" disabled>Create Bingo</button>
         <?php } ?>
 
         <?php if ($bingo !== 0) {  ?>

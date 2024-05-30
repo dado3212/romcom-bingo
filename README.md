@@ -9,10 +9,8 @@
 4. Allow you to create new bingos, and have a proper share screen.
 5. Visual cleanup so it looks professional.
 6. Allow you to insert your own tags.
-7. Saving of the movie name/naming bingos?
 9. Fun animations when you get bingo?
 11. More visually interesting selection scribbling.
-15. Bind the click events to touchstart to remove selection lag on iOS.
 17. Right padding and center bingo board.
 18. Tag selection overlap?
 

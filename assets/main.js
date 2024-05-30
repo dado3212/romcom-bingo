@@ -1,5 +1,6 @@
 var current = 0;
 var dimension = 5;
+var isDisabled = true;
 
 const FREE_SPACE = 12;
 const COLORS = {
@@ -97,6 +98,9 @@ window.onload = () => {
     // Add a click event listener to each tag option
     document.querySelectorAll('.option').forEach(function (tag) {
         tag.addEventListener('click', function () {
+            if (tag.classList.contains('disabled')) {
+                return;
+            }
             // Add in the class for CSS styling
             this.classList.toggle('selected');
             let isSelected = this.classList.contains('selected');
@@ -139,11 +143,28 @@ window.onload = () => {
                     current += 1;
                 }
             }
+
+            // Handle what happens when you hit the maximum number
+            if (selectedTags.length === 24) {
+                isDisabled = true;
+                // Enable the create button
+                document.querySelector('.create').disabled = false;
+                // Disable all non-selected options
+                document.querySelectorAll('.option:not(.selected)').forEach(function (tag) {
+                    tag.classList.add('disabled');
+                });
+            } else if (isDisabled) {
+                isDisabled = false;
+                // Disable the create button
+                document.querySelector('.create').disabled = true;
+                // Enable all options
+                document.querySelectorAll('.option.disabled').forEach(function (tag) {
+                    tag.classList.remove('disabled');
+                });
+            }
         });
     });
 
-    // TODO: At the max, gray out all unselected squares
-    // TODO: At the max, enable this (and disable it at the start)
     const createButton = document.querySelector('.create');
     if (createButton) {
         createButton.addEventListener('click', function () {
