@@ -104,6 +104,10 @@ body {
     padding: 3px;
 }
 
+#create {
+    display: block;
+}
+
 /**
  *  Handle colors for coloring in your bingo board!
  */

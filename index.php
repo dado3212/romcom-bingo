@@ -63,7 +63,6 @@
                     ];
                 }
 
-                // print_r(var_export(json_encode($json_data), true));
                 echo "<script> var startingTags = " . json_encode($json_data) . ";</script>";
                 $tags = [];
             } else {
@@ -72,9 +71,6 @@
     
                 $tags = $tags_stmt->fetchAll();
             }
-
-            // print_r(var_export($tags, true));
-
             
 			// Respects 'Request Desktop Site'
 			if (preg_match("/(iPhone|iPod|iPad|Android|BlackBerry)/i", $_SERVER["HTTP_USER_AGENT"])) {
@@ -173,6 +169,7 @@
                 <label for="movieName">Movie name?</label>
                 <input type="text" id="movieName" name="movieName" placeholder="Enter the movie title here">
                 <button id="submitInfo">Submit</button>
+                <a class="shareLink" href="" target="_blank">Share Bingo Screen!</a>
             </div>
         </div>
     </body>

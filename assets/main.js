@@ -169,6 +169,13 @@ window.onload = () => {
     if (createButton) {
         createButton.addEventListener('click', function () {
             document.querySelector('#popupForm').style.display = 'block';
+
+             // display the naming screen
+             document.querySelector('.popup-content label').style.display = 'block';
+             document.querySelector('.popup-content input').style.display = 'block';
+             document.querySelector('.popup-content button').style.display = 'block';
+             
+             document.querySelector('.popup-content .shareLink').style.display = 'none';
         });
     }
 
@@ -204,21 +211,38 @@ window.onload = () => {
         var xhr = new XMLHttpRequest();
         xhr.open('POST', 'php/create.php', true);
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        this.disabled = true;
         xhr.onreadystatechange = function (data) {
-            console.log(data);
-            // TODO: Show some sort of spinner?
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (data.target.status !== 200) {
                     // TODO: handle the error message, display it in some way.
                     console.log(JSON.parse(data.target.response)['message']);
                 } else {
                     const bingoIndex = JSON.parse(data.target.response)['index'];
-                    // TODO: Display the share screen
-                    alert('https://alexbeals.com/projects/bingo/?b=' + bingoIndex);
+
+                    // display the share screen
+                    document.querySelector('.popup-content label').style.display = 'none';
+                    document.querySelector('.popup-content input').style.display = 'none';
+                    document.querySelector('.popup-content button').style.display = 'none';
+                    
+                    document.querySelector('.shareLink').style.display = 'block';
+                    document.querySelector('.shareLink').href = 'https://alexbeals.com/projects/bingo/?b=' + bingoIndex;
                 }
             }
         }
         xhr.send('movieName=' + movieName + '&tags=' + tagString);
+    });
+
+    // Share screen listener
+    document.querySelector('.shareLink').addEventListener('click', function (e) {
+        if (navigator.share) {
+            e.preventDefault();
+            navigator.share({
+                title: 'Share this link',
+                text: 'Check out this awesome link!',
+                url: this.href
+            });
+        }
     });
 };
 
