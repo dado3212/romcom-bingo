@@ -4,6 +4,10 @@ html {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+body {
+    margin: 8px;
+}
+
 .option {
     display: inline-block;
     background-color: #113916;
@@ -36,9 +40,13 @@ html {
 }
 
 .cell {
-    /* Should ideally be some combination of vw and vh */
-    width: 75px;
-    height: 75px;
+    /* Full width - body margin - 6 grid lines, divided by 5 */
+    width: calc((100vw - 8px * 2 - 2px * 6) / 5);
+    height: calc((100vw - 8px * 2 - 2px * 6) / 5);
+
+    max-width: 75px;
+    max-height: 75px;
+
     background-color: white;
     overflow: hidden;
     position: relative;
@@ -94,7 +102,8 @@ html {
     justify-content: space-between;
     align-items: center;
     /* Cell width * 5 + border width * 5 + 1) */
-    width: calc(75px * 5 + 2px * 6 - 20px);
+    width: calc(100vw - 20px - 8px * 2);
+    max-width: calc(75px * 5 - 20px + 2px * 6);
 }
 
 .colors div {
@@ -108,4 +117,34 @@ html {
 
 .colors div.selected {
     border: 3px solid black;
+}
+
+/**
+ *  Movie
+ */
+.movie {
+    margin-top: 10px;
+    padding: 5px 20px;
+    width: calc(100vw - 40px - 8px * 2);
+    max-width: calc(75px * 5 - 40px + 2px * 6);
+
+    border-radius: 10px;
+    box-shadow: 3px 3px 4px #949191;
+
+    font-size: 2em;
+    font-family: sans-serif;
+    color: white;
+    background-color: #3B3B3C;
+
+    display: flex;
+}
+
+.movie img {
+    width: 55px;
+    /* Make it white */
+    filter: invert(100%);
+}
+
+.movie p {
+    margin-left: 10px;
 }

@@ -12,7 +12,14 @@
             $bingo = intval($_GET["b"] ?? "");
             // If there is a bingo, then select it
             if ($bingo !== 0) {
-                $bingo_stmt = $PDO->prepare("SELECT `index`, `tags` FROM boards WHERE `index`=:index");
+                $bingo_stmt = $PDO->prepare(
+                    "SELECT 
+                        boards.`index`, boards.`tags`, movies.`name`
+                    FROM boards
+                    LEFT JOIN movies on movies.`index` = boards.`movie`
+                    WHERE 
+                        boards.`index`=:index"
+                );
                 $bingo_stmt->bindValue(":index", $bingo, PDO::PARAM_INT);
                 $bingo_stmt->execute();
 
@@ -21,6 +28,7 @@
                 if ($bingo_info === false) {
                     header('Location: //alexbeals.com/projects/bingo/');
                 }
+                $movie_name = $bingo_info['name'];
                 $bingo_tags = json_decode($bingo_info['tags']);
                 // Confirm that they're all numbers, otherwise redirect
                 foreach ($bingo_tags as $tag) {
@@ -130,6 +138,13 @@
 
         <?php if ($bingo !== 0) {  ?>
             <div class="colors">
+            </div>
+        <?php } ?>
+
+        <?php if ($bingo !== 0) {  ?>
+            <div class="movie">
+                <img src="assets/clapper.svg"/>
+                <p><?php echo $movie_name; ?></p>
             </div>
         <?php } ?>
         
