@@ -148,7 +148,7 @@ window.onload = () => {
             if (selectedTags.length === 24) {
                 isDisabled = true;
                 // Enable the create button
-                document.querySelector('.create').disabled = false;
+                document.querySelector('#create').disabled = false;
                 // Disable all non-selected options
                 document.querySelectorAll('.option:not(.selected)').forEach(function (tag) {
                     tag.classList.add('disabled');
@@ -156,7 +156,7 @@ window.onload = () => {
             } else if (isDisabled) {
                 isDisabled = false;
                 // Disable the create button
-                document.querySelector('.create').disabled = true;
+                document.querySelector('#create').disabled = true;
                 // Enable all options
                 document.querySelectorAll('.option.disabled').forEach(function (tag) {
                     tag.classList.remove('disabled');
@@ -165,13 +165,10 @@ window.onload = () => {
         });
     });
 
-    const createButton = document.querySelector('.create');
+    const createButton = document.querySelector('#create');
     if (createButton) {
         createButton.addEventListener('click', function () {
-            let savedTags = JSON.stringify(selectedTags.map((element) => element['tagIndex']));
-            
-            // TODO: Actually push this using create.php
-            console.log(savedTags);
+            document.querySelector('#popupForm').style.display = 'block';
         });
     }
 
@@ -191,4 +188,43 @@ window.onload = () => {
             }
         });
     });
+
+    // Popup listeners    
+    document.querySelector('#closePopup').addEventListener('click', function() {
+        document.querySelector('#popupForm').style.display = 'none';
+    });
+    
+    document.querySelector('#submitInfo').addEventListener('click', function() {
+        let movieName = document.querySelector('#movieName').value;
+        // document.getElementById('popupForm').style.display = 'none';
+        // TODO: Show the share screen
+                    
+        const tagString = JSON.stringify(selectedTags.map(tag => tag.tagIndex));
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'php/create.php', true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function (data) {
+            console.log(data);
+            // TODO: Show some sort of spinner?
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (data.target.status !== 200) {
+                    // TODO: handle the error message, display it in some way.
+                    console.log(JSON.parse(data.target.response)['message']);
+                } else {
+                    const bingoIndex = JSON.parse(data.target.response)['index'];
+                    // TODO: Display the share screen
+                    alert('https://alexbeals.com/projects/bingo/?b=' + bingoIndex);
+                }
+            }
+        }
+        xhr.send('movieName=' + movieName + '&tags=' + tagString);
+    });
+};
+
+// Close the popup if the user clicks anywhere outside of it
+window.onclick = function(event) {
+    if (event.target == document.getElementById('popupForm')) {
+        document.getElementById('popupForm').style.display = 'none';
+    }
 };

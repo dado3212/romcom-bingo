@@ -133,7 +133,7 @@
         </div>
 
         <?php if ($bingo === 0) {  ?>
-            <button class="create" disabled>Create Bingo</button>
+            <button id="create" disabled>Create Bingo</button>
         <?php } ?>
 
         <?php if ($bingo !== 0) {  ?>
@@ -156,6 +156,7 @@
         ?>
         </div>
 
+        <!-- Used for the background image when selecting -->
         <svg width="0" height="0">
             <filter id="grainy" x="0" y="0" width="100%" height="100%">
                 <feTurbulence type="fractalNoise" baseFrequency=".537"></feTurbulence>
@@ -163,5 +164,16 @@
                 <feBlend mode="multiply" in="SourceGraphic"></feBlend>
             </filter>
         </svg>
+
+        <!-- Used for the popup when creating a bingo -->
+        <div id="popupForm" class="popup">
+            <div class="popup-content">
+                <span id="closePopup" class="close">&times;</span>
+                <h2>Create Bingo</h2>
+                <label for="movieName">Movie name?</label>
+                <input type="text" id="movieName" name="movieName" placeholder="Enter the movie title here">
+                <button id="submitInfo">Submit</button>
+            </div>
+        </div>
     </body>
 </html>
