@@ -66,7 +66,7 @@
                 echo "<script> var startingTags = " . json_encode($json_data) . ";</script>";
                 $tags = [];
             } else {
-                $tags_stmt = $PDO->prepare("SELECT `index`, `text` FROM tags WHERE `index` != 1");
+                $tags_stmt = $PDO->prepare("SELECT `index`, `text` FROM tags WHERE `index` != 1 AND `default` = TRUE;");
                 $tags_stmt->execute();
     
                 $tags = $tags_stmt->fetchAll();
@@ -150,6 +150,7 @@
                 echo '<div class="option" data-index="' . $tag['index'] . '">' . $tag['text'] . '</div>';
             }
         ?>
+            <div class="option add">_________</div>
         </div>
 
         <!-- Used for the background image when selecting -->

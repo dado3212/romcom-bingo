@@ -101,10 +101,15 @@ window.onload = () => {
             if (tag.classList.contains('disabled')) {
                 return;
             }
-            // Add in the class for CSS styling
-            this.classList.toggle('selected');
-            let isSelected = this.classList.contains('selected');
-            let tagIndex = parseInt(this.dataset.index);
+            // Handle adding a new tag
+            if (tag.classList.contains('add')) {
+                // TODO: actually do this
+            } else {
+                // Add in the class for CSS styling
+                this.classList.toggle('selected');
+                let isSelected = this.classList.contains('selected');
+                let tagIndex = parseInt(this.dataset.index);
+            }
 
             // Add it directly, and append it to the 'selectedTags' list
             // which is used when unselecting an option, and when 
@@ -238,9 +243,7 @@ window.onload = () => {
         if (navigator.share) {
             e.preventDefault();
             navigator.share({
-                title: 'Share this link',
-                text: 'Check out this awesome link!',
-                url: this.href
+                url: this.href,
             });
         }
     });
