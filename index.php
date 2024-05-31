@@ -163,14 +163,25 @@
         </svg>
 
         <!-- Used for the popup when creating a bingo -->
-        <div id="popupForm" class="popup">
+        <div id="newBingo" class="popup">
             <div class="popup-content">
                 <span id="closePopup" class="close">&times;</span>
                 <h2>Create Bingo</h2>
-                <label for="movieName">Movie name?</label>
+                <label for="movieName">Movie name:</label>
                 <input type="text" id="movieName" name="movieName" placeholder="Enter the movie title here">
-                <button id="submitInfo">Submit</button>
+                <button id="submitBingo">Submit</button>
                 <a class="shareLink" href="" target="_blank">Share Bingo Screen!</a>
+            </div>
+        </div>
+
+        <!-- Used for the popup when creating a new tag -->
+        <div id="newTag" class="popup">
+            <div class="popup-content">
+                <span class="close">&times;</span>
+                <h2>Create Tag</h2>
+                <label for="tagText">Tag text:</label>
+                <input type="text" id="tagText" name="tagText" placeholder="Enter the text of the tag here">
+                <button id="submitTag">Submit</button>
             </div>
         </div>
     </body>

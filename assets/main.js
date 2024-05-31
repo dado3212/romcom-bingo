@@ -104,68 +104,76 @@ window.onload = () => {
             // Handle adding a new tag
             if (tag.classList.contains('add')) {
                 // TODO: actually do this
+                document.querySelector('#newTag').style.display = 'block';
+
+                // display the naming screen
+                document.querySelector('.popup-content label').style.display = 'block';
+                document.querySelector('.popup-content input').style.display = 'block';
+                document.querySelector('.popup-content button').style.display = 'block';
+                
+                document.querySelector('.popup-content .shareLink').style.display = 'none';
             } else {
                 // Add in the class for CSS styling
                 this.classList.toggle('selected');
                 let isSelected = this.classList.contains('selected');
                 let tagIndex = parseInt(this.dataset.index);
-            }
 
-            // Add it directly, and append it to the 'selectedTags' list
-            // which is used when unselecting an option, and when 
-            // creating a formal bingo board that can be shared
-            if (isSelected) {
-                let cell = getCell(current);
+                // Add it directly, and append it to the 'selectedTags' list
+                // which is used when unselecting an option, and when 
+                // creating a formal bingo board that can be shared
+                if (isSelected) {
+                    let cell = getCell(current);
 
-                cell.innerHTML = '<p>' + this.innerHTML + '</p>';
+                    cell.innerHTML = '<p>' + this.innerHTML + '</p>';
 
-                selectedTags.push({
-                    text: this.innerHTML,
-                    tagIndex: tagIndex,
-                });
+                    selectedTags.push({
+                        text: this.innerHTML,
+                        tagIndex: tagIndex,
+                    });
 
-                current += 1;
-                // Skip over Free Space
-                if (current === FREE_SPACE) {
                     current += 1;
-                }
-            } else {
-                // Find the selected tag that matches and remove it
-                let newSelectedTags = [];
-                for (let i = 0; i < selectedTags.length; i++) {
-                    if (selectedTags[i].tagIndex != tagIndex) {
-                        newSelectedTags.push(selectedTags[i]);
+                    // Skip over Free Space
+                    if (current === FREE_SPACE) {
+                        current += 1;
+                    }
+                } else {
+                    // Find the selected tag that matches and remove it
+                    let newSelectedTags = [];
+                    for (let i = 0; i < selectedTags.length; i++) {
+                        if (selectedTags[i].tagIndex != tagIndex) {
+                            newSelectedTags.push(selectedTags[i]);
+                        }
+                    }
+                    selectedTags = newSelectedTags;
+
+                    // Rewrite the cells (easier than trying to fix them
+                    // for tags that are in the middle of the list)
+                    resetCells();
+                    current = selectedTags.length;
+                    // Skip over Free Space
+                    if (current >= FREE_SPACE) {
+                        current += 1;
                     }
                 }
-                selectedTags = newSelectedTags;
 
-                // Rewrite the cells (easier than trying to fix them
-                // for tags that are in the middle of the list)
-                resetCells();
-                current = selectedTags.length;
-                // Skip over Free Space
-                if (current >= FREE_SPACE) {
-                    current += 1;
+                // Handle what happens when you hit the maximum number
+                if (selectedTags.length === 24) {
+                    isDisabled = true;
+                    // Enable the create button
+                    document.querySelector('#create').disabled = false;
+                    // Disable all non-selected options
+                    document.querySelectorAll('.option:not(.selected)').forEach(function (tag) {
+                        tag.classList.add('disabled');
+                    });
+                } else if (isDisabled) {
+                    isDisabled = false;
+                    // Disable the create button
+                    document.querySelector('#create').disabled = true;
+                    // Enable all options
+                    document.querySelectorAll('.option.disabled').forEach(function (tag) {
+                        tag.classList.remove('disabled');
+                    });
                 }
-            }
-
-            // Handle what happens when you hit the maximum number
-            if (selectedTags.length === 24) {
-                isDisabled = true;
-                // Enable the create button
-                document.querySelector('#create').disabled = false;
-                // Disable all non-selected options
-                document.querySelectorAll('.option:not(.selected)').forEach(function (tag) {
-                    tag.classList.add('disabled');
-                });
-            } else if (isDisabled) {
-                isDisabled = false;
-                // Disable the create button
-                document.querySelector('#create').disabled = true;
-                // Enable all options
-                document.querySelectorAll('.option.disabled').forEach(function (tag) {
-                    tag.classList.remove('disabled');
-                });
             }
         });
     });
@@ -173,7 +181,7 @@ window.onload = () => {
     const createButton = document.querySelector('#create');
     if (createButton) {
         createButton.addEventListener('click', function () {
-            document.querySelector('#popupForm').style.display = 'block';
+            document.querySelector('#newBingo').style.display = 'block';
 
              // display the naming screen
              document.querySelector('.popup-content label').style.display = 'block';
@@ -202,11 +210,13 @@ window.onload = () => {
     });
 
     // Popup listeners    
-    document.querySelector('#closePopup').addEventListener('click', function() {
-        document.querySelector('#popupForm').style.display = 'none';
+    document.querySelectorAll('.close').forEach(function (closePopup) {
+        closePopup.addEventListener('click', function() {
+            closePopup.closest('.popup').style.display = 'none';
+        });
     });
     
-    document.querySelector('#submitInfo').addEventListener('click', function() {
+    document.querySelector('#submitBingo').addEventListener('click', function() {
         let movieName = document.querySelector('#movieName').value;
         // document.getElementById('popupForm').style.display = 'none';
         // TODO: Show the share screen
@@ -251,7 +261,7 @@ window.onload = () => {
 
 // Close the popup if the user clicks anywhere outside of it
 window.onclick = function(event) {
-    if (event.target == document.getElementById('popupForm')) {
-        document.getElementById('popupForm').style.display = 'none';
+    if (event.target.classList.contains('popup')) {
+        event.target.style.display = 'none';
     }
 };
