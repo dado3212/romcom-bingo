@@ -149,8 +149,10 @@
             foreach ($tags as $tag) {
                 echo '<div class="option" data-index="' . $tag['index'] . '">' . $tag['text'] . '</div>';
             }
+            if ($bingo === 0) {
+        ?> <div class="option add">_________</div> <?php
+            }
         ?>
-            <div class="option add">_________</div>
         </div>
 
         <!-- Used for the background image when selecting -->
@@ -167,8 +169,9 @@
             <div class="popup-content">
                 <span id="closePopup" class="close">&times;</span>
                 <h2>Create Bingo</h2>
+                <div id="error"></div>
                 <label for="movieName">Movie name:</label>
-                <input type="text" id="movieName" name="movieName" placeholder="Enter the movie title here">
+                <input type="text" id="movieName" name="movieName" placeholder="Enter the movie title here" maxlength="100">
                 <button id="submitBingo">Submit</button>
                 <a class="shareLink" href="" target="_blank">Share Bingo Screen!</a>
             </div>
@@ -180,7 +183,7 @@
                 <span class="close">&times;</span>
                 <h2>Create Tag</h2>
                 <label for="tagText">Tag text:</label>
-                <input type="text" id="tagText" name="tagText" placeholder="Enter the text of the tag here">
+                <input type="text" id="tagText" name="tagText" placeholder="Enter the text of the tag here" maxlength="100">
                 <button id="submitTag">Submit</button>
             </div>
         </div>
