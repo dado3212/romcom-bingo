@@ -6,9 +6,7 @@
 1. Favicon and header and all that jazz.
 2. Make sure it renders properly and is interactible on mobile.
 3. Fix tag truncation.
-4. Have a proper share screen.
 5. Visual cleanup so it looks professional.
-6. Allow you to insert your own tags.
 9. Fun animations when you get bingo?
 11. More visually interesting selection scribbling.
 17. Right padding and center bingo board.

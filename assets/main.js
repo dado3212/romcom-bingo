@@ -322,6 +322,36 @@ window.onload = () => {
             });
         }
     });
+
+    // Set up the marquee
+    // const marquee = document.querySelector('.marquee .movie');
+    // // Top row
+    // for (let i = 0; i < 16; i++) {
+    //     let newDot = document.createElement('div');
+    //     newDot.classList.add('dot');
+    //     newDot.style.top = '-18px';
+    //     newDot.style.animationDelay = (i * 0.03) + 's';
+    //     newDot.style.left = (-18 + (375 - 5)/16 * i) + 'px';
+    //     marquee.append(newDot);
+    // }
+    // // Left row
+    // for (let i = 1; i < 5; i++) {
+    //     let newDot = document.createElement('div');
+    //     newDot.classList.add('dot');
+    //     newDot.style.left = '-18px';
+    //     newDot.style.top = (-18 + (375 - 5)/16 * i) + 'px';
+    //     marquee.append(newDot);
+    // }
+    // // Right row
+    // // Bottom row
+    // for (let i = 0; i < 17; i++) {
+    //     let newDot = document.createElement('div');
+    //     newDot.classList.add('dot');
+    //     newDot.style.top = '104px';
+    //     newDot.style.left = (-16 + 22 * i) + 'px';
+    //     marquee.append(newDot);
+    // }
+
 };
 
 // Close any popups if the user clicks outside of it

@@ -136,36 +136,6 @@ body {
 }
 
 /**
- *  Movie
- */
-.movie {
-    margin-top: 10px;
-    padding: 5px 20px;
-    width: calc(100vw - 40px - 8px * 2);
-    max-width: calc(75px * 5 - 40px + 2px * 6);
-
-    border-radius: 10px;
-    box-shadow: 3px 3px 4px #949191;
-
-    font-size: 2em;
-    font-family: sans-serif;
-    color: white;
-    background-color: #3B3B3C;
-
-    display: flex;
-}
-
-.movie img {
-    width: 55px;
-    /* Make it white */
-    filter: invert(100%);
-}
-
-.movie p {
-    margin-left: 10px;
-}
-
-/**
  *  Popup
  */
  .popup {
@@ -227,4 +197,78 @@ input {
     padding: 5px;
     margin: 0px 0px 10px 0px;
     border-radius: 4px;
+}
+
+/**
+ *  Marquee
+ */
+.marquee {
+    background-color: #0d253b;
+    border-radius: 5px;
+    width: 375px;
+    height: 150px;
+    margin-top: 45px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.marquee h1 {
+    background-color: #0d253b;
+    display: inline-block;
+    position: relative;
+    top: -55px;
+    left: 64px;
+    padding: 15px 29px;
+    border-radius: 8px;
+    color: #fff;
+    text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
+}
+
+.marquee .movie {
+    box-sizing: border-box;
+
+    background-color: white;
+    margin: 26px;
+    border-radius: 3px;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+
+    height: calc(100% - 52px);
+    width: calc(100% - 52px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: repeating-linear-gradient(to bottom, white 0, white 24px, black 24px, black 25px);
+}
+
+.marquee p {
+    font-family: 'Impact';
+    font-size: 3em;
+    text-align: center;
+
+    text-shadow: -5px 0 white, 0 5px white, 5px 0 white, 0 -5px white;
+}
+
+.marquee .dot {
+    width: 10px;
+    height: 10px;
+
+    background-color: #ffcc00;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00, 0 0 30px #ffcc00;
+    animation: blink 0.8s infinite alternate;
+
+    position: absolute;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.3;
+    }
 }

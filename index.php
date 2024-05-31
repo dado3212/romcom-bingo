@@ -87,8 +87,32 @@
         <script src="assets/main.js"></script>
     </head>
     <body>
-        <h1>Rom-com Bingo!</h1>
-        <div>Your one stop shop for your second screen experience.<?php if ($bingo === 0) { echo " This is the create screen!"; } ?></div>
+        <div class="marquee">
+            <div class="header">
+                <div class="spacing"></div>
+                <div class="icon-heart"></div>
+                <div class="title">Rom-Com Bingo</div>
+                <div class="icon-clapper"></div>
+                <div class="spacing"></div>
+            </div>
+            <div class="top-lights"></div>
+            <div class="center">
+                <div class="left-lights"></div>
+                <div class="text">
+                    <p>
+                    <?php 
+                    if ($bingo === 0) {
+                        echo 'Coming Soon';
+                    } else {
+                        echo $movie_name;
+                    }
+                    ?>
+                    </p>
+                </div>
+                <div class="right-lights"></div>
+            </div>
+            <div class="bottom-lights"></div>
+        </div>
 
         <div class="bingo">
             <div class="row">
@@ -134,13 +158,6 @@
 
         <?php if ($bingo !== 0) {  ?>
             <div class="colors">
-            </div>
-        <?php } ?>
-
-        <?php if ($bingo !== 0) {  ?>
-            <div class="movie">
-                <img src="assets/clapper.svg"/>
-                <p><?php echo $movie_name; ?></p>
             </div>
         <?php } ?>
         
