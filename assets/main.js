@@ -324,33 +324,44 @@ window.onload = () => {
     });
 
     // Set up the marquee
-    // const marquee = document.querySelector('.marquee .movie');
-    // // Top row
-    // for (let i = 0; i < 16; i++) {
-    //     let newDot = document.createElement('div');
-    //     newDot.classList.add('dot');
-    //     newDot.style.top = '-18px';
-    //     newDot.style.animationDelay = (i * 0.03) + 's';
-    //     newDot.style.left = (-18 + (375 - 5)/16 * i) + 'px';
-    //     marquee.append(newDot);
-    // }
-    // // Left row
-    // for (let i = 1; i < 5; i++) {
-    //     let newDot = document.createElement('div');
-    //     newDot.classList.add('dot');
-    //     newDot.style.left = '-18px';
-    //     newDot.style.top = (-18 + (375 - 5)/16 * i) + 'px';
-    //     marquee.append(newDot);
-    // }
-    // // Right row
-    // // Bottom row
-    // for (let i = 0; i < 17; i++) {
-    //     let newDot = document.createElement('div');
-    //     newDot.classList.add('dot');
-    //     newDot.style.top = '104px';
-    //     newDot.style.left = (-16 + 22 * i) + 'px';
-    //     marquee.append(newDot);
-    // }
+    const topLights = document.querySelector('.marquee .top-lights');
+    const leftLights = document.querySelector('.marquee .left-lights');
+    const bottomLights = document.querySelector('.marquee .bottom-lights');
+    const rightLights = document.querySelector('.marquee .right-lights');
+    let counter = 0;
+    // Top row
+    for (let i = 0; i < 15; i++) {
+        let newDot = document.createElement('div');
+        newDot.classList.add('dot');
+        newDot.style.animationDelay = (counter * 0.03) + 's';
+        topLights.append(newDot);
+        counter++;
+    }
+    // Right row
+    for (let i = 0; i < 6; i++) {
+        let newDot = document.createElement('div');
+        newDot.classList.add('dot');
+        newDot.style.animationDelay = (counter * 0.03) + 's';
+        rightLights.append(newDot);
+        counter++;
+    }
+    // Bottom row
+    for (let i = 15; i > 0; i--) {
+        let newDot = document.createElement('div');
+        newDot.classList.add('dot');
+        newDot.style.animationDelay = ((counter + i) * 0.03) + 's';
+        bottomLights.append(newDot);
+    }
+    counter += 15;
+    // Left row
+    for (let i = 6; i > 0; i--) {
+        let newDot = document.createElement('div');
+        newDot.classList.add('dot');
+        newDot.style.animationDelay = ((counter + i) * 0.03) + 's';
+        leftLights.append(newDot);
+    }
+
+   
 
 };
 

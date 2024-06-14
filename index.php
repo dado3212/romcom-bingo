@@ -90,9 +90,9 @@
         <div class="marquee">
             <div class="header">
                 <div class="spacing"></div>
-                <div class="icon-heart"></div>
-                <div class="title">Rom-Com Bingo</div>
-                <div class="icon-clapper"></div>
+                <div class="icon heart"><span>&#xf08a;</span></div>
+                <div class="title">Rom-Com<br />Bingo</div>
+                <div class="icon clapper"><span>&#xf008;</span></div>
                 <div class="spacing"></div>
             </div>
             <div class="top-lights"></div>
