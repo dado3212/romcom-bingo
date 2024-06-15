@@ -125,7 +125,8 @@ window.onload = () => {
         newDot.classList.add('dot');
         newDot.style.width = size + 'px';
         newDot.style.height = size + 'px';
-        newDot.style.animation = 'blink ' + loopDuration + 's infinite';
+        newDot.style.animation = 'blink ' + loopDuration + 's';
+        newDot.style.animationIterationCount = 10;
         newDot.style.animationDelay = ((c % loopSize) * loopDuration / loopSize) - 2 + 's';
         return newDot;
     }

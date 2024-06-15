@@ -24,6 +24,7 @@ html {
 
 body {
     margin: 8px;
+    max-width: calc(75px * 5 + 2px * 6);
 }
 
 .option {
@@ -135,9 +136,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* Cell width * 5 + border width * 5 + 1) */
-    width: calc(100vw - 20px - 8px * 2);
-    max-width: calc(75px * 5 - 20px + 2px * 6);
 }
 
 .colors div {
@@ -223,12 +221,13 @@ input {
 .marquee {
     display: flex;
     flex-direction: column;
-
-    width: 350px;
-
-    position: relative;
+    align-items: center;
+    margin-bottom: 8px;
 
     .header {
+        margin-bottom: -4px;
+        z-index: 1;
+
         .title {
             display: inline-block;
 
@@ -237,6 +236,7 @@ input {
 
             font-family: 'Neon', 'Impact';
             color: transparent;
+            text-transform: uppercase;
 
             text-align: center;
             -webkit-text-stroke-width: 2px;
@@ -250,7 +250,7 @@ input {
         justify-content: space-between;
         position: relative;
 
-        border: 20px solid #0d253b;
+        border-radius: 5px;
 
         .text {
             box-sizing: border-box;
