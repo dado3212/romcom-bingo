@@ -102,6 +102,11 @@ function resetCells() {
 }
 
 function changeTheme(color) {
+    var ua = window.navigator.userAgent;
+    var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
+    var webkit = !!ua.match(/WebKit/i);
+    var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
+
     // Set the background
     document.querySelector('html').style.backgroundColor = color['background'];
     // Marquee border (TODO: need to make this responsive to the size)
@@ -110,7 +115,10 @@ function changeTheme(color) {
     let marqueeTitle = document.querySelector('.marquee .title');
     // -webkit-text-stroke-color
     marqueeTitle.style.webkitTextStrokeColor = color['neon-primary'];
-    marqueeTitle.style.textShadow = '0 0 5px ' + color['neon-primary'] + ', -3px 3px 0px ' + color['neon-secondary'] + ', -4px 4px 2px ' + color['neon-secondary'];
+    marqueeTitle.style.textShadow = 
+        '0 0 5px ' + color['neon-primary'] + (iOSSafari ? 'A3' : 'FF') + ', ' + 
+        '-3px 3px 0px ' + color['neon-secondary']+ (iOSSafari ? 'A3' : 'FF') + ', ' + 
+        '-4px 4px 2px ' + color['neon-secondary'] + (iOSSafari ? 'A3' : 'FF');
     // Dots
     document.querySelectorAll('.marquee .dot').forEach(dot => {
         dot.style.backgroundColor = color['neon-primary'];
