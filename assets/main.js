@@ -145,6 +145,11 @@ window.onload = () => {
              document.querySelector('.popup-content button').style.display = 'block';
              
              document.querySelector('.popup-content .shareLink').style.display = 'none';
+
+             // Focus on the movie name field
+             let movieName = document.querySelector('#movieName');
+             movieName.value = '';
+             movieName.focus();
         });
     }
 
@@ -155,10 +160,10 @@ window.onload = () => {
         });
     });
     
-    document.querySelector('#newBingo form').addEventListener('click', function(e) {
+    document.querySelector('#newBingo form').addEventListener('submit', function(e) {
         // Don't go anywhere
         e.preventDefault();
-        
+
         let movieName = document.querySelector('#movieName').value;
         // document.getElementById('popupForm').style.display = 'none';
         // TODO: Show the share screen
