@@ -75,7 +75,10 @@ export function changeTheme(color) {
     // And theme color
     document.querySelector('meta[name="theme-color"]').setAttribute('content', color['background']);
     // Submit button
-    document.querySelector('#create').style.backgroundColor = color['neon-primary'];
+    let submitButton = document.querySelector('#create');
+    if (submitButton) {
+        submitButton.style.backgroundColor = color['neon-primary'];
+    }
     // Marquee border (TODO: need to make this responsive to the size)
     document.querySelector('.marquee .center').style.border = '20px solid ' + color['border'];
     // Set neon title

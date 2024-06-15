@@ -43,7 +43,7 @@ function resetCells() {
 
 function scrollToCenter(element) {
     // Only do this for small screens
-    if (document.body.getBoundingClientRect().width >= 650) {
+    if (window.screen.width >= 650) {
         return;
     }
     element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
