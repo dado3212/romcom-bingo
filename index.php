@@ -20,12 +20,25 @@
 			}
         ?>
 
+        <!-- Meta tags -->
+        <meta name="robots" content="index, follow, archive">
+        <meta name="description" content="Make bingo boards and play along as you watch a trope-filled rom-com! Come up with your own tropes, or use some of our common ones. It's the perfect second screen experience!">
+        <meta charset="utf-8" />
+        <meta http-equiv="Cache-control" content="public">
+
+        <!-- SEO and Semantic Markup -->
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:creator" content="@alex_beals">
+
+        <meta property="og:title" content="Rom-Com Bingo">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="https://alexbeals.com/projects/bingo/php/preview.php">
+        <meta property="og:url" content="https://alexbeals.com/projects/bingo/">
+        <meta property="og:description" content="Make bingo boards and play along as you watch a trope-filled rom-com! Come up with your own tropes, or use some of our common ones. It's the perfect second screen experience!">
+
         <title>Rom-com Bingo</title>
 
-        <?php
-        function rs( $length = 8 ) { $chars = "abcdefghijklmnopqrstuvwxyz0123456789"; $rs = substr( str_shuffle( $chars ), 0, $length ); return $rs; } 
-        ?>
-        <link rel="stylesheet" type="text/css" href="/projects/bingo/assets/main.css?id=<?php echo rs(); ?>">
+        <link rel="stylesheet" type="text/css" href="/projects/bingo/assets/main.css">
         <script type="module" src="/projects/bingo/assets/common.js"></script>
         <script type="module" src="/projects/bingo/assets/main.js"></script>
         <style>

@@ -42,7 +42,7 @@
         $lines = [];
         while ($font_size > 5) {
             $lines = wrapText($font_size, $font, $text, $block_width);
-            $total_text_height = count($lines) * $font_size * 1.2; // Assuming 1.2 line height
+            $total_text_height = count($lines) * $font_size * 1.4; // Assuming 1.2 line height
 
             if ($total_text_height <= $block_height) {
                 break;
@@ -59,8 +59,8 @@
             $text_width = $text_box[2] - $text_box[0];
             $text_x = $x + ($block_width - $text_width) / 2;
 
-            imagettfstroketext($image, $font_size, 0, $text_x, $text_y, $text_color, $white_color, $font, $line, 3);
-            $text_y += $font_size * 1.2; // Move to the next line
+            imagettfstroketext($image, $font_size, 0, $text_x, $text_y, $text_color, $white_color, $font, $line, 7);
+            $text_y += $font_size * 1.4; // Move to the next line
         }
     }
 
@@ -72,7 +72,7 @@
         strlen($_GET["name"]) >= 0 &&
         strlen($_GET["name"]) <= 100
     ) {
-        $name = htmlspecialchars($_GET["name"]);
+        $name = htmlspecialchars(strtoupper($_GET["name"]));
 
         // Select a random background image
         srand(crc32($name));
@@ -82,10 +82,10 @@
         $text_color = imagecolorallocate($image, 0, 0, 0);
 
         // Define the block dimensions and position
-        $block_width = 500; // Width of the block
-        $block_height = 140; // Height of the block
-        $block_x = 85; // X position of the block
-        $block_y = 133; // Y position of the block
+        $block_width = 420; // Width of the block
+        $block_height = 100; // Height of the block
+        $block_x = 125; // X position of the block
+        $block_y = 153; // Y position of the block
 
         // Write the text within the block
         drawCentered($image, $block_width, $block_height, $block_x, $block_y, $name, $text_color);
