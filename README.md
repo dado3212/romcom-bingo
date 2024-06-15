@@ -1,12 +1,12 @@
 # <img src="/assets/favicon/android-chrome-192x192.png?raw=true" width="30" alt="Logo"/> Rom-com Bingo
 
-A website that allows you to build randomized bingo boards for a second-screen experience while watching trope-filled Rom Coms.
+A website that allows you to build randomized bingo boards for a second-screen experience while watching trope-filled romantic comedies.
 
 <p align="center">
   <img height="406" alt="Rom-Com Bingo screenshot" src="https://github.com/dado3212/romcom-bingo/assets/8919256/ad25aeb2-2fbc-47c3-ad6f-14e97fd82351">
 </p>
 
-I noticed a while back that a lot of new romcoms (especially those pumped out by streaming services like Netflix and Amazon Prime) have optimized their formulas to the point that you can predict basically the whole plot from just the title and movie poster. To bring a little more spice into them, I started playing bingo for tropes. The ideal way to play is to predict standard plot points from just the title and movie poster, but you can also use some of the pre-filled default classics. Share the bingo link, and each load will be a unique ordering. See who wins first (or in the case of many of these movies, how <i>many</i> times you can win).
+I noticed a while back that a lot of new romantic comediess (especially those pumped out by streaming services like Netflix and Amazon Prime) have optimized their formulas to the point that you can predict basically the whole plot from just the title and movie poster. To bring a little more spice into them, I started playing bingo for tropes. The ideal way to play is to predict standard plot points from just the title and movie poster, but you can also use some of the pre-filled default classics. Share the bingo link, and each load will be a unique ordering. See who wins first (or in the case of many of these movies, how <i>many</i> times you can win).
 
 You can visit the site and build your own at https://alexbeals.com/projects/bingo or play around with a sample board at https://alexbeals.com/projects/bingo/board/25?r=1.
 
