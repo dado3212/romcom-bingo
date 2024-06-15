@@ -41,6 +41,19 @@ function resetCells() {
     }
 }
 
+function scrollToCenter(element) {
+    // Only do this if the overall width is sub 650px.
+    const bodyRect = document.body.getBoundingClientRect();
+    if (bodyRect.width >= 650) {
+        return;
+    }
+    const elementRect = element.getBoundingClientRect();
+    
+    // Calculate the scroll positions to center the child
+    const scrollTop = elementRect.top - bodyRect.top - (bodyRect.height / 2) + (elementRect.height / 2);
+    document.body.scrollTop += scrollTop;
+}
+
 function tagClick(tag) {
     if (tag.classList.contains('disabled')) {
         return;
@@ -63,6 +76,7 @@ function tagClick(tag) {
         // creating a formal bingo board that can be shared
         if (isSelected) {
             let cell = getCell(current);
+            scrollToCenter(cell);
 
             cell.innerHTML = '<p>' + tag.innerHTML + '</p>';
 
@@ -94,6 +108,7 @@ function tagClick(tag) {
             if (current >= FREE_SPACE) {
                 current += 1;
             }
+            scrollToCenter(getCell(current));
         }
 
         // Handle what happens when you hit the maximum number
@@ -212,6 +227,7 @@ window.onload = () => {
         // which is used when unselecting an option, and when 
         // creating a formal bingo board that can be shared
         let cell = getCell(current);
+        scrollToCenter(cell);
 
         cell.innerHTML = '<p>' + tagText + '</p>';
 

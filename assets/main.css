@@ -15,6 +15,7 @@
 html {
     font-size: 12px;
     touch-action: manipulation;
+    overscroll-behavior: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
     font-family: sans-serif;

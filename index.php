@@ -28,6 +28,33 @@
         <link rel="stylesheet" type="text/css" href="/projects/bingo/assets/main.css?id=<?php echo rs(); ?>">
         <script type="module" src="/projects/bingo/assets/common.js"></script>
         <script type="module" src="/projects/bingo/assets/main.js"></script>
+        <style>
+            @media (max-width: 650px) {
+                html {
+                    overflow: auto;
+                }
+
+                body {
+                    height: calc(100dvh - 300px - 8px - 2 * 10px);
+                    overflow: scroll;
+                }
+
+                .selector {
+                    position: absolute;
+                    left: 0px;
+                    bottom: 0px;
+
+                    z-index: 2;
+
+                    height: 300px;
+                    padding: 10px;
+                    overflow-y: scroll;
+
+                    background-color: white;
+                    border-top: 2px solid #143347;
+                }
+            }
+        </style>
     </head>
     <body>
         <div class="marquee">
