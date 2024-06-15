@@ -360,9 +360,6 @@ window.onload = () => {
         newDot.style.animationDelay = ((counter + i) * 0.03) + 's';
         leftLights.append(newDot);
     }
-
-   
-
 };
 
 // Close any popups if the user clicks outside of it

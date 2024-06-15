@@ -89,15 +89,9 @@
     <body>
         <div class="marquee">
             <div class="header">
-                <div class="spacing"></div>
-                <div class="icon heart"><span>&#xf08a;</span></div>
-                <div class="title">Rom-Com<br />Bingo</div>
-                <div class="icon clapper"><span>&#xf008;</span></div>
-                <div class="spacing"></div>
+                <div class="title">Rom-Com Bingo</div>
             </div>
-            <div class="top-lights"></div>
             <div class="center">
-                <div class="left-lights"></div>
                 <div class="text">
                     <p>
                     <?php 
@@ -109,9 +103,7 @@
                     ?>
                     </p>
                 </div>
-                <div class="right-lights"></div>
             </div>
-            <div class="bottom-lights"></div>
         </div>
 
         <div class="bingo">
