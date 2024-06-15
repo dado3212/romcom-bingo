@@ -3,17 +3,15 @@
 ## TODO
 
 **Important**
-1. Favicon and header and all that jazz.
-3. Fix tag truncation.
-11. More visually interesting selection scribbling.
-18. Tag selection overlap?
 
 **Unimportant**
-8. Different grid sizes?
-10. ...with a counter of how many times you won?
-12. See previous bingos/save your status (see who won?)
-13. Admin screen for deleting/adding new default tags/default tag status?
-14. Delete bingos?
+1. More visually interesting selection scribbling.
+2. Better popup styling
+3. Different grid sizes?
+4. ...with a counter of how many times you won?
+5. See previous bingos/save your status (see who won?)
+6. Admin screen for deleting/adding new default tags/default tag status?
+7. Delete bingos?
 
 ## Setup
 
