@@ -1,8 +1,3 @@
-var current = 0;
-var dimension = 5;
-var isDisabled = true;
-var nextTagNumber = -1;
-
 const FREE_SPACE = 12;
 const COLORS = {
     'red': '#AC1212',
