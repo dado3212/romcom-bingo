@@ -7,35 +7,35 @@
         return imagettftext($image, $size, $angle, $x, $y, $textcolor, $fontfile, $text);
     }
 
+    // Function to wrap text within the specified width
+    function wrapText($font_size, $font, $text, $max_width) {
+        $words = explode(' ', $text);
+        $lines = [];
+        $current_line = '';
+
+        foreach ($words as $word) {
+            $test_line = $current_line === '' ? $word : $current_line . ' ' . $word;
+            $text_box = imagettfbbox($font_size, 0, $font, $test_line);
+            $text_width = $text_box[2] - $text_box[0];
+
+            if ($text_width > $max_width && $current_line !== '') {
+                $lines[] = $current_line;
+                $current_line = $word;
+            } else {
+                $current_line = $test_line;
+            }
+        }
+
+        if ($current_line !== '') {
+            $lines[] = $current_line;
+        }
+
+        return $lines;
+    }
+
     function drawCentered($image, $block_width, $block_height, $x, $y, $text, $text_color) {
         putenv("GDFONTPATH=/usr/share/fonts/truetype/dejavu");
         $font = "DejaVuSansMono.ttf"; // Using DejaVu Sans Mono as an example
-
-        // Function to wrap text within the specified width
-        function wrapText($font_size, $font, $text, $max_width) {
-            $words = explode(' ', $text);
-            $lines = [];
-            $current_line = '';
-
-            foreach ($words as $word) {
-                $test_line = $current_line === '' ? $word : $current_line . ' ' . $word;
-                $text_box = imagettfbbox($font_size, 0, $font, $test_line);
-                $text_width = $text_box[2] - $text_box[0];
-
-                if ($text_width > $max_width && $current_line !== '') {
-                    $lines[] = $current_line;
-                    $current_line = $word;
-                } else {
-                    $current_line = $test_line;
-                }
-            }
-
-            if ($current_line !== '') {
-                $lines[] = $current_line;
-            }
-
-            return $lines;
-        }
 
         // Start with a large font size and decrease until the text fits within the block
         $font_size = 120;
