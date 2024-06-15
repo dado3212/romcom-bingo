@@ -248,6 +248,7 @@ input {
     .center {
         display: flex;
         justify-content: space-between;
+        position: relative;
 
         border: 20px solid #0d253b;
 
@@ -276,13 +277,10 @@ input {
 }
 
 .marquee .dot {
-    width: 10px;
-    height: 10px;
-
+    position: absolute;
     background-color: #ffcc00;
     border-radius: 50%;
     box-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00, 0 0 30px #ffcc00;
-    animation: blink 0.4s infinite alternate;
 }
 
 @keyframes blink {
@@ -290,6 +288,6 @@ input {
         opacity: 1;
     }
     100% {
-        opacity: 0.3;
+        opacity: 0.5;
     }
 }

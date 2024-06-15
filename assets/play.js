@@ -105,41 +105,62 @@ window.onload = () => {
         });
     });
 
-    // Set up the marquee
-    const topLights = document.querySelector('.marquee .top-lights');
-    const leftLights = document.querySelector('.marquee .left-lights');
-    const bottomLights = document.querySelector('.marquee .bottom-lights');
-    const rightLights = document.querySelector('.marquee .right-lights');
-    let counter = 0;
-    // Top row
-    for (let i = 0; i < 15; i++) {
+    // Constants
+    let size = 10;
+    let margin = 5;
+    // Marquee dimensions in # of dots
+    let width = 20;
+    let height = 8;
+    // Number of concurrent loops that should be going on
+    let loopSize = 4; // width * 2 + height * 2 - 4 must be divisible by this
+    let loopDuration = 0.4;
+
+    var marqueeCenter = document.querySelector('.marquee .center');
+    marqueeCenter.style.width = (size * width + margin * (width + 1)) - 4 * size + 'px';
+    marqueeCenter.style.height = (size * height + margin * (height + 1)) - 4 * size + 'px';
+    marqueeCenter.style.border = size * 2 + 'px solid #0d253b'; 
+
+    function createDot(c) {
         let newDot = document.createElement('div');
         newDot.classList.add('dot');
-        newDot.style.animationDelay = (counter * 0.03) + 's';
-        topLights.append(newDot);
+        newDot.style.width = size + 'px';
+        newDot.style.height = size + 'px';
+        newDot.style.animation = 'blink ' + loopDuration + 's infinite';
+        newDot.style.animationDelay = ((c % loopSize) * loopDuration / loopSize) - 2 + 's';
+        return newDot;
+    }
+
+    // Set up the marquee
+    let counter = 0;
+    // Top row
+    for (let i = 0; i < width; i++) {
+        let newDot = createDot(counter);
+        newDot.style.top = '-15px';
+        newDot.style.left = -15 + counter * (size + margin) + 'px';
+        marqueeCenter.append(newDot);
         counter++;
     }
     // Right row
-    for (let i = 0; i < 6; i++) {
-        let newDot = document.createElement('div');
-        newDot.classList.add('dot');
-        newDot.style.animationDelay = (counter * 0.03) + 's';
-        rightLights.append(newDot);
+    for (let i = 1; i < height; i++) {
+        let newDot = createDot(counter);
+        newDot.style.right = '-15px';
+        newDot.style.top = -15 + i * (size + margin) + 'px';
+        marqueeCenter.append(newDot);
         counter++;
     }
     // Bottom row
-    for (let i = 15; i > 0; i--) {
-        let newDot = document.createElement('div');
-        newDot.classList.add('dot');
-        newDot.style.animationDelay = ((counter + i) * 0.03) + 's';
-        bottomLights.append(newDot);
+    for (let i = width - 1; i > 0; i--) {
+        let newDot = createDot(counter + i - 1);
+        newDot.style.bottom = '-15px';
+        newDot.style.right = -15 + i * (size + margin) + 'px';
+        marqueeCenter.append(newDot);
     }
-    counter += 15;
+    counter += width;
     // Left row
-    for (let i = 6; i > 0; i--) {
-        let newDot = document.createElement('div');
-        newDot.classList.add('dot');
-        newDot.style.animationDelay = ((counter + i) * 0.03) + 's';
-        leftLights.append(newDot);
+    for (let i = height - 2; i > 0; i--) {
+        let newDot = createDot(counter + i - 2);
+        newDot.style.left = '-15px';
+        newDot.style.bottom = -15 + i * (size + margin) + 'px';
+        marqueeCenter.append(newDot);
     }
 };
