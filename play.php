@@ -91,11 +91,7 @@
                 <div class="text">
                     <p>
                     <?php 
-                    if ($bingo === 0) {
-                        echo 'Coming Soon';
-                    } else {
                         echo $movie_name;
-                    }
                     ?>
                     </p>
                 </div>
@@ -139,25 +135,7 @@
                 <div class="cell"></div>
             </div>
         </div>
-
-        <?php if ($bingo === 0) {  ?>
-            <button id="create" disabled>Create Bingo</button>
-        <?php } ?>
-
-        <?php if ($bingo !== 0) {  ?>
-            <div class="colors">
-            </div>
-        <?php } ?>
-        
-        <div class="selector">
-        <?php
-            foreach ($tags as $tag) {
-                echo '<div class="option" data-index="' . $tag['index'] . '">' . $tag['text'] . '</div>';
-            }
-            if ($bingo === 0) {
-        ?> <div class="option add">_________</div> <?php
-            }
-        ?>
+        <div class="colors">
         </div>
 
         <!-- Used for the background image when selecting -->
@@ -168,29 +146,5 @@
                 <feBlend mode="multiply" in="SourceGraphic"></feBlend>
             </filter>
         </svg>
-
-        <!-- Used for the popup when creating a bingo -->
-        <div id="newBingo" class="popup">
-            <div class="popup-content">
-                <span id="closePopup" class="close">&times;</span>
-                <h2>Create Bingo</h2>
-                <div id="error"></div>
-                <label for="movieName">Movie name:</label>
-                <input type="text" id="movieName" name="movieName" placeholder="Enter the movie title here" maxlength="100">
-                <button id="submitBingo">Submit</button>
-                <a class="shareLink" href="" target="_blank">Share Bingo Screen!</a>
-            </div>
-        </div>
-
-        <!-- Used for the popup when creating a new tag -->
-        <div id="newTag" class="popup">
-            <div class="popup-content">
-                <span class="close">&times;</span>
-                <h2>Create Tag</h2>
-                <label for="tagText">Tag text:</label>
-                <input type="text" id="tagText" name="tagText" placeholder="Enter the text of the tag here" maxlength="100">
-                <button id="submitTag">Submit</button>
-            </div>
-        </div>
     </body>
 </html>
