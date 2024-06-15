@@ -1,4 +1,4 @@
-# <img src="/assets/favicon/android-chrome-192x192.png?raw=true" width="30" alt="Logo"/> Rom-Com Bingo
+# <img src="/assets/favicon/android-chrome-192x192.png?raw=true" width="30" alt="Logo"/> Rom-com Bingo
 
 A website that allows you to build randomized bingo boards for a second-screen experience while watching trope-filled Rom Coms.
 
