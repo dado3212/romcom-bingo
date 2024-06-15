@@ -49,3 +49,7 @@ for (let i = 0; i < 24; i++) {
     items[i].click();
 }
 ```
+
+## Thanks
+
+https://github.com/catdad/canvas-confetti
