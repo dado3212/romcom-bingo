@@ -36,6 +36,17 @@
         <meta property="og:url" content="https://alexbeals.com/projects/bingo/">
         <meta property="og:description" content="Make bingo boards and play along as you watch a trope-filled rom-com! Come up with your own tropes, or use some of our common ones. It's the perfect second screen experience!">
 
+        <!-- Favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/projects/bingo/assets/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/projects/bingo/assets/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/projects/bingo/assets/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/projects/bingo/assets/favicon/site.webmanifest">
+        <link rel="mask-icon" href="/projects/bingo/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="/projects/bingo/assets/favicon/favicon.ico">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="msapplication-config" content="/projects/bingo/assets/favicon/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">
+
         <title>Rom-com Bingo</title>
 
         <link rel="stylesheet" type="text/css" href="/projects/bingo/assets/main.css">
