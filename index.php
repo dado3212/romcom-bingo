@@ -16,7 +16,7 @@
             
 			// Respects 'Request Desktop Site'
 			if (preg_match("/(iPhone|iPod|iPad|Android|BlackBerry)/i", $_SERVER["HTTP_USER_AGENT"])) {
-				?><meta name="viewport" content="width=device-width, initial-scale=1.0"><?php
+				?><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"><?php
 			}
         ?>
 
@@ -109,11 +109,12 @@
         <button id="create" disabled>Create Bingo</button>
         
         <div class="selector">
-        <?php
+            <div class="option add">_________</div>
+            <?php
             foreach ($tags as $tag) {
                 echo '<div class="option" data-index="' . $tag['index'] . '">' . $tag['text'] . '</div>';
-            }?>
-            <div class="option add">_________</div>
+            }
+            ?>
         </div>
 
         <!-- Used for the background image when selecting -->
@@ -129,11 +130,13 @@
         <div id="newBingo" class="popup">
             <div class="popup-content">
                 <span id="closePopup" class="close">&times;</span>
-                <h2>Create Bingo</h2>
-                <div id="error"></div>
-                <label for="movieName">Movie name:</label>
-                <input type="text" id="movieName" name="movieName" placeholder="Enter the movie title here" maxlength="100">
-                <button id="submitBingo">Submit</button>
+                <form>
+                    <h2>Create Bingo</h2>
+                    <div id="error"></div>
+                    <label for="movieName">Movie name:</label>
+                    <input type="text" id="movieName" name="movieName" placeholder="Enter the movie title here" maxlength="100">
+                    <button type="submit" id="submitBingo">Submit</button>
+                </form>
                 <a class="shareLink" href="" target="_blank">Share Bingo Screen!</a>
             </div>
         </div>
@@ -142,10 +145,12 @@
         <div id="newTag" class="popup">
             <div class="popup-content">
                 <span class="close">&times;</span>
-                <h2>Create Tag</h2>
-                <label for="tagText">Tag text:</label>
-                <input type="text" id="tagText" name="tagText" placeholder="Enter the text of the tag here" maxlength="100">
-                <button id="submitTag">Submit</button>
+                <form>
+                    <h2>Create Tag</h2>
+                    <label for="tagText">Tag text:</label>
+                    <input type="text" id="tagText" name="tagText" placeholder="Enter the text of the tag here" maxlength="100">
+                    <button type="submit">Submit</button>
+                </form>
             </div>
         </div>
     </body>

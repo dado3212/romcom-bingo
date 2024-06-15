@@ -8,4 +8,8 @@
 	RewriteRule "^board/0$" "/projects/bingo" [QSA]
 
 	RewriteRule "^board/(\d+)/?" "play.php?bingo=$1" [QSA]
+
+	# HTTPS Redirection
+	RewriteCond %{HTTPS} !=on
+	RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [QSA,END,R=permanent]
 </IfModule>

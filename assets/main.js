@@ -42,16 +42,11 @@ function resetCells() {
 }
 
 function scrollToCenter(element) {
-    // Only do this if the overall width is sub 650px.
-    const bodyRect = document.body.getBoundingClientRect();
-    if (bodyRect.width >= 650) {
+    // Only do this for small screens
+    if (document.body.getBoundingClientRect().width >= 650) {
         return;
     }
-    const elementRect = element.getBoundingClientRect();
-    
-    // Calculate the scroll positions to center the child
-    const scrollTop = elementRect.top - bodyRect.top - (bodyRect.height / 2) + (elementRect.height / 2);
-    document.body.scrollTop += scrollTop;
+    element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
 }
 
 function tagClick(tag) {
@@ -160,7 +155,10 @@ window.onload = () => {
         });
     });
     
-    document.querySelector('#submitBingo').addEventListener('click', function() {
+    document.querySelector('#newBingo form').addEventListener('click', function(e) {
+        // Don't go anywhere
+        e.preventDefault();
+        
         let movieName = document.querySelector('#movieName').value;
         // document.getElementById('popupForm').style.display = 'none';
         // TODO: Show the share screen
@@ -208,7 +206,10 @@ window.onload = () => {
         xhr.send('movieName=' + movieName + '&tags=' + tagString + '&newTags=' + newTags);
     });
 
-    document.querySelector('#submitTag').addEventListener('click', function() {
+    document.querySelector('#newTag form').addEventListener('submit', function(e) {
+        // Don't go anywhere
+        e.preventDefault();
+
         let tagText = document.querySelector('#tagText').value;
                     
         // Create the new tag
@@ -220,8 +221,7 @@ window.onload = () => {
 
         newOption.innerHTML = tagText;
         // Append the option to the UI
-        let lastOption = Array.from(document.querySelectorAll('.option:not(.add)')).pop();
-        lastOption.after(newOption);
+        document.querySelector('.option.add').after(newOption);
 
         // Add it to a cell, and append it to the 'selectedTags' list
         // which is used when unselecting an option, and when 

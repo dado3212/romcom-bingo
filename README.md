@@ -41,7 +41,7 @@ function getDatabase() {
 Select the first 24 options to have a complete bingo:
 ```
 let items = document.querySelectorAll('.option');
-for (let i = 0; i < 24; i++) {
+for (let i = 1; i < 25; i++) {
     items[i].click();
 }
 ```
