@@ -4,12 +4,8 @@
 
 **Important**
 1. Favicon and header and all that jazz.
-2. Make sure it renders properly and is interactible on mobile.
 3. Fix tag truncation.
-5. Visual cleanup so it looks professional.
-9. Fun animations when you get bingo?
 11. More visually interesting selection scribbling.
-17. Right padding and center bingo board.
 18. Tag selection overlap?
 
 **Unimportant**
