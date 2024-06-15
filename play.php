@@ -99,7 +99,7 @@
         <link rel="shortcut icon" href="/projects/bingo/assets/favicon/favicon.ico">
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="msapplication-config" content="/projects/bingo/assets/favicon/browserconfig.xml">
-        <meta name="theme-color" content="#ffffff">
+        <meta name="theme-color" content="#143347">
 
         <title>Rom-com Bingo</title>
 

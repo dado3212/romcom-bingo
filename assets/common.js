@@ -72,11 +72,14 @@ export function changeTheme(color) {
 
     // Set the background
     document.querySelector('html').style.backgroundColor = color['background'];
+    // And theme color
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', color['background']);
+    // Submit button
+    document.querySelector('#create').style.backgroundColor = color['neon-primary'];
     // Marquee border (TODO: need to make this responsive to the size)
     document.querySelector('.marquee .center').style.border = '20px solid ' + color['border'];
     // Set neon title
     let marqueeTitle = document.querySelector('.marquee .title');
-    // -webkit-text-stroke-color
     marqueeTitle.style.webkitTextStrokeColor = color['neon-primary'];
     marqueeTitle.style.textShadow = 
         '0 0 5px ' + color['neon-primary'] + (iOSSafari ? 'A3' : 'FF') + ', ' + 
