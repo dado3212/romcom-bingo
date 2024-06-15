@@ -29,7 +29,7 @@ body {
 
 .option {
     display: inline-block;
-    background-color: #113916;
+    background-color: #1f4e6d;
     padding: 6px;
     margin: 3px;
     border-radius: 4px;
@@ -42,7 +42,7 @@ body {
 }
 
 .option.selected {
-    background-color: #4E9A26;
+    background-color: #329A97;
 }
 
 .option.disabled {

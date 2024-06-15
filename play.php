@@ -80,7 +80,8 @@
         function rs( $length = 8 ) { $chars = "abcdefghijklmnopqrstuvwxyz0123456789"; $rs = substr( str_shuffle( $chars ), 0, $length ); return $rs; } 
         ?>
         <link rel="stylesheet" type="text/css" href="/projects/bingo/assets/main.css?id=<?php echo rs(); ?>">
-        <script src="/projects/bingo/assets/play.js"></script>
+        <script type="module" src="/projects/bingo/assets/common.js"></script>
+        <script type="module" src="/projects/bingo/assets/play.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
     </head>
     <body>

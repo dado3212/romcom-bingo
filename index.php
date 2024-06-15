@@ -7,70 +7,12 @@
             error_reporting(E_ALL);
             ini_set('display_errors', 'On');
 
-            // Get all of the tags that we want to use
+            // Get the default tags
             $PDO = getDatabase();
-            $bingo = intval($_GET["b"] ?? "");
-            // If there is a bingo, then select it
-            if ($bingo !== 0) {
-                $bingo_stmt = $PDO->prepare(
-                    "SELECT 
-                        boards.`index`, boards.`tags`, movies.`name`
-                    FROM boards
-                    LEFT JOIN movies on movies.`index` = boards.`movie`
-                    WHERE 
-                        boards.`index`=:index"
-                );
-                $bingo_stmt->bindValue(":index", $bingo, PDO::PARAM_INT);
-                $bingo_stmt->execute();
+            $tags_stmt = $PDO->prepare("SELECT `index`, `text` FROM tags WHERE `index` != 1 AND `default` = TRUE;");
+            $tags_stmt->execute();
 
-                $bingo_info = $bingo_stmt->fetch();
-                // If you fail to find a matching bingo board, just redirect to the create screen
-                if ($bingo_info === false) {
-                    header('Location: //alexbeals.com/projects/bingo/');
-                }
-                $movie_name = $bingo_info['name'];
-                $bingo_tags = json_decode($bingo_info['tags']);
-                // Confirm that they're all numbers, otherwise redirect
-                foreach ($bingo_tags as $tag) {
-                    if (!intval($tag)) {
-                        header('Location: //alexbeals.com/projects/bingo/');
-                    }
-                }
-
-                $tag_info_stmt = $PDO->prepare("SELECT `index`, `text` FROM tags WHERE `index` IN (" . implode(',',$bingo_tags) . ");");
-                $tag_info_stmt->execute();
-
-                $raw_tag_info = $tag_info_stmt->fetchAll();
-
-                $tag_info = [];
-                foreach ($raw_tag_info as $tag) {
-                    $tag_info[$tag['index']] = $tag['text'];
-                }
-
-                // Do a seeded randomization of the squares
-                $randomization_seed = intval($_GET["r"] ?? "");
-                if ($randomization_seed !== 0) {
-                    mt_srand($randomization_seed);
-                }
-                $order = array_map(function ($val) { return mt_rand(); }, range(1, count($bingo_tags)));
-                array_multisort($order, $bingo_tags);
-
-                $json_data = [];
-                foreach ($bingo_tags as $tag) {
-                    $json_data[] = [
-                        'text' => $tag_info[$tag],
-                        'tagIndex' => $tag,
-                    ];
-                }
-
-                echo "<script> var startingTags = " . json_encode($json_data) . ";</script>";
-                $tags = [];
-            } else {
-                $tags_stmt = $PDO->prepare("SELECT `index`, `text` FROM tags WHERE `index` != 1 AND `default` = TRUE;");
-                $tags_stmt->execute();
-    
-                $tags = $tags_stmt->fetchAll();
-            }
+            $tags = $tags_stmt->fetchAll();
             
 			// Respects 'Request Desktop Site'
 			if (preg_match("/(iPhone|iPod|iPad|Android|BlackBerry)/i", $_SERVER["HTTP_USER_AGENT"])) {
@@ -83,8 +25,9 @@
         <?php
         function rs( $length = 8 ) { $chars = "abcdefghijklmnopqrstuvwxyz0123456789"; $rs = substr( str_shuffle( $chars ), 0, $length ); return $rs; } 
         ?>
-        <link rel="stylesheet" type="text/css" href="assets/main.css?id=<?php echo rs(); ?>">
-        <script src="assets/main.js"></script>
+        <link rel="stylesheet" type="text/css" href="/projects/bingo/assets/main.css?id=<?php echo rs(); ?>">
+        <script type="module" src="/projects/bingo/assets/common.js"></script>
+        <script type="module" src="/projects/bingo/assets/main.js"></script>
     </head>
     <body>
         <div class="marquee">
@@ -93,15 +36,7 @@
             </div>
             <div class="center">
                 <div class="text">
-                    <p>
-                    <?php 
-                    if ($bingo === 0) {
-                        echo 'Coming Soon';
-                    } else {
-                        echo $movie_name;
-                    }
-                    ?>
-                    </p>
+                    <p>Coming Soon</p>
                 </div>
             </div>
         </div>
@@ -144,24 +79,14 @@
             </div>
         </div>
 
-        <?php if ($bingo === 0) {  ?>
-            <button id="create" disabled>Create Bingo</button>
-        <?php } ?>
-
-        <?php if ($bingo !== 0) {  ?>
-            <div class="colors">
-            </div>
-        <?php } ?>
+        <button id="create" disabled>Create Bingo</button>
         
         <div class="selector">
         <?php
             foreach ($tags as $tag) {
                 echo '<div class="option" data-index="' . $tag['index'] . '">' . $tag['text'] . '</div>';
-            }
-            if ($bingo === 0) {
-        ?> <div class="option add">_________</div> <?php
-            }
-        ?>
+            }?>
+            <div class="option add">_________</div>
         </div>
 
         <!-- Used for the background image when selecting -->
