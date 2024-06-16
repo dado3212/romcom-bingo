@@ -200,7 +200,8 @@ window.onload = () => {
                         bingo(element);
                         return;
                     }
-                } else if (row + col == 4) {
+                }
+                if (row + col == 4) {
                     isBingo = true;
                     for (let i = 0; i < 5; i++) {
                         if (!cells[i * 5 + (4 - i)].classList.contains('fulfilled')) {
