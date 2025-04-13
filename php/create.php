@@ -111,7 +111,7 @@
 
         // Create any new tags
         if ($num_new_tags > 0) {
-            $new_tag_stmt = $PDO->prepare("INSERT INTO tags(`text`, `movie`) VALUES " . implode(array_fill(0, $num_new_tags, "(?, ?)"), ", "));
+            $new_tag_stmt = $PDO->prepare("INSERT INTO tags(`text`, `movie`) VALUES " . implode(", ", array_fill(0, $num_new_tags, "(?, ?)")));
             for ($i = 0; $i < $num_new_tags; $i++) {
                 $new_tag_stmt->bindValue($i*2 + 1, $new_tags[$i], PDO::PARAM_STR);
                 $new_tag_stmt->bindValue($i*2 + 2, $movie_index, PDO::PARAM_INT);
